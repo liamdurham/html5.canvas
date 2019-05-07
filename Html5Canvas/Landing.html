@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Metadata -->
+	<title>David Anderson | Web Animation Portfolio</title>
+	<meta charset="UTF-8">
+	<meta name="author" content="David Anderson"/>
+	<meta name="description" content="A portfolio of HTML5 web graphics and canvas animation." />
+	<meta name="keywords" content="WGD235,HTML5, web graphics, animations" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	
+	
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="css/kickstart.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" media="all" /> 
+    
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+	
+	<!-- JavaScript -->
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/kickstart.js"></script>
+    
+    <!----Style--->
+    <style>
+        a { cursor: pointer }      
+    </style>
+
+</head>
+
+<body>
+<div class="grid">
+ 
+  <nav>
+    <ul class="menu">
+      <li class="current"><a href="Landing.html">Home</a></li>
+          <li>
+              <a href="Info.html">Information about Airsoft</a>
+            </li>
+          <li><a href="GettingStarted.html">Getting Started</a>
+           </li>
+          <li><a href="Rules.html">Common Rules</a>
+           </li>
+          <li><a href="Locations.html">Find a Location Near You</a>      </li>
+          <li><a href="Prevalence.html">Prevalence of Airsoft</a>
+            </li>
+          <li><a href="Sites.html">Websites For Airsoft Needs</a>
+            </li>
+    </ul>
+  </nav>
+        <div class="col_12">
+            <h1 class="center">
+                WGD235 Course Project - Airsoft
+            </h1> 
+            <h3>
+                Hello there! My name is David Anderson, and I have created this website to help inform you about Airsoft!
+            </h3> 
+<script>
+// variable to keep track of the current image
+var currentImg = 1;
+// navigate to the next slide
+function showImage(imgNum) {
+// check if the History API is available
+if ( typeof history.pushState !== "undefined" ) {
+// verify the image selected is not the current one
+if (currentImg != imgNum) {
+// set the image title
+var imgTitle = 'Slide ' + imgNum;
+// set next slide in history entries with state object and defaults
+history.pushState( imgNum, imgTitle, '?img=' + imgNum );
+document.getElementById('imgSlide').src = 'images/slide' + imgNum + '.png';
+
+// set the current page title
+var stateInfo = document.getElementById('stateInfo')
+stateInfo.innerHTML = imgTitle;
+// set the current image to the image selected
+currentImg = imgNum;
+}
+} else {
+// History API is not available
+alert('The History API is not available in this browser.');
+}
+}
+</script>
+
+<!-- image view and title - set to first image -->
+<div id='imgView' class='imgView'><img id='imgSlide' src="images/slide1.png" style='height:300px'></div>
+<div id='stateInfo' class ='stateInfo'>Slide 1</div>
+<!-- thumbnail image row -->
+<div id='imgRow' class='imgRow'></div>
+
+<script>
+// create row of img links
+var newImg;
+var imgRow = document.getElementById('imgRow');
+for (var i=1; i<=5; i++ ) {
+document.getElementById('imgRow').add
+newImg = '<a onclick="showImage('+i+');"><img class="thumbnail"src="images/slide'+i+'.png"></a>';
+imgRow.innerHTML += newImg;
+}
+</script>
+
+   </div><!-- End col_12 -->
+ 
+   <footer>
+     <p>© Copyright 2017. Developed by David Anderson for WGD235. All Rights Reserved.</p>
+   </footer>
+ 
+ </div> <!-- End Grid -->
+ 
+</body>
+</html>

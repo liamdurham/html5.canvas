@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Metadata -->
+	<title>David Anderson | Vector-based Illustration</title>
+	<meta charset="UTF-8">
+	<meta name="author" content="David Anderson"/>
+	<meta name="description" content="A portfolio of HTML5 web graphics and canvas animation." />
+	<meta name="keywords" content="WGD235,HTML5, web graphics, animations" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	
+	
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="css/kickstart.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" media="all" /> 
+    
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+	
+	<!-- JavaScript -->
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/kickstart.js"></script>
+    
+</head>
+
+<body onload="OnLoad();">
+<div class="grid">
+ 
+  <nav>
+    <ul class="menu">
+      <li><a href="Landing.html">Home</a></li>
+          <li>
+              <a href="Info.html">Information about Airsoft</a>
+            </li>
+          <li><a href="GettingStarted.html">Getting Started</a>
+           </li>
+          <li><a href="Rules.html">Common Rules</a>
+           </li>
+          <li><a href="Locations.html">Find a Location Near You</a>      </li>
+          <li><a href="Prevalence.html">Prevalence of Airsoft</a>
+            </li>
+          <li class="current"><a href="Sites.html">Websites For Airsoft Needs</a>
+            </li>   
+    </ul>
+  </nav>
+        <div class="col_12">
+            <h1 class="center">
+                Online Airsoft Retailers.
+            </h1> 
+  <script>  
+    function OnLoad(){
+        // Get canvas
+        var canvas = document.getElementById("myCanvas");
+
+        // 2d context 
+        var ctx = canvas.getContext("2d");
+        ctx.translate(0.5, 0.5); // * Move the canvas by 0.5px to fix blurring
+        
+        // Links
+        var Links = new Array(); // Links information
+        var hoverLink = ""; // Href of the link which cursor points at
+        ctx.fillStyle = "#0000ff"; // Default blue link color
+        ctx.font = "40px Oswald"; // Monospace font for links
+        ctx.textBaseline = "top"; // Makes left top point a start point for rendering text
+
+        // Draw 
+        function drawLink(x,y,href,title){
+            var linkTitle = title,
+                linkX = x,
+                linkY = y,
+                linkWidth = ctx.measureText(linkTitle).width +50,
+                linkHeight = parseInt(ctx.font) + 150; // Get lineheight out of fontsize
+                var img1 = new Image();
+                var img2 = new Image();
+                var img3 = new Image();
+                img2.src = "https://www.airsoftgi.com/art/mobile2017/gi-top-logo-15th-year.png";
+                img1.src = "http://www.evike.com/images3/logo-evike.png";
+                img3.src = "https://pbs.twimg.com/profile_images/900426002546925568/nI15RFYb_400x400.jpg";
+                img1.onload = function(){
+                    ctx.drawImage(img1, 0, 150);
+                    ctx.drawImage(img2, 400, 150);
+                    ctx.drawImage(img3, 840, 150, 150, 100);
+        }
+
+            // Draw the link
+            ctx.fillText(linkTitle, linkX, linkY);
+
+            // Add mouse listeners
+            canvas.addEventListener("mousemove", on_mousemove, false);
+            canvas.addEventListener("click", on_click, false);
+
+            // Add link params to array
+            Links.push(x + ";" + y + ";" + linkWidth + ";" + linkHeight + ";" + href);
+        }
+
+        // Link hover
+        function on_mousemove (ev) {
+            var x, y;
+
+            // Get the mouse position relative to the canvas element
+            if (ev.layerX || ev.layerX == 0) { // For Firefox
+                x = ev.layerX;
+                y = ev.layerY;
+            }
+
+            // Link hover
+            for (var i = Links.length - 1; i >= 0; i--) {
+                var params = new Array();
+
+                // Get link params back from array
+                params = Links[i].split(";");
+
+                var linkX = parseInt(params[0]),
+                    linkY = parseInt(params[1]),
+                    linkWidth = parseInt(params[2]),
+                    linkHeight = parseInt(params[3]),
+                    linkHref = params[4];
+
+                // Check if cursor is in the link area
+                if (x >= linkX && x <= (linkX + linkWidth) && y >= linkY && y <= (linkY + linkHeight)){
+                    document.body.style.cursor = "pointer";
+                    hoverLink = linkHref;
+                    break;
+                }
+                else {
+                    document.body.style.cursor = "";
+                    hoverLink = "";
+                }
+            };
+        }
+    
+        // Link click
+        function on_click(e) {
+            if (hoverLink){
+                window.open(hoverLink); 
+                // Use this to open in new tab
+                //window.location = hoverLink; // Use this to open in current window
+            }
+        }
+
+        // Ready for use ! You are welcome !
+        drawLink(125,45,"https://www.evike.com","Evike");
+        drawLink(450,45,"https://www.airsoftgi.com","AirsoftGI");
+        drawLink(775,45,"https://www.airsoftmegastore.com","Airsoft Mega Store");
+    } 
+</script> 
+<canvas id="myCanvas" width="1200" height="300">  
+Canvas is not supported in your browser ! :(  
+</canvas>
+
+	
+  
+            <h2>
+                The "Big Three":  
+            </h2>
+            <p> My personal favorite is Evike.com, but AirsoftMegastore and AirsoftGI both have awesome sales at times. Your favorite store could be a local retailer, or even a more specialized parts store, but all new players need to know about these three stores and the price reductions they offer. Don't be fooled, however; there are many cheaper places to get the same gear if you shop around. Use these stores as a guide or final resort, not as a main purchasing site. </p>
+            
+
+   
+          
+   </div><!-- End col_12 -->
+ 
+   <footer>
+     <p>© Copyright 2017. Developed by David Anderson for WGD235. All Rights Reserved.</p>
+   </footer>
+ 
+ </div> <!-- End Grid -->
+ 
+</body>
+</html>

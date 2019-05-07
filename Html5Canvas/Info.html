@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Metadata -->
+	<title>David Anderson | A Simple HTML5 Page with CSS.</title>
+	<meta charset="UTF-8">
+	<meta name="author" content="David Anderson"/>
+	<meta name="description" content="A portfolio of HTML5 web graphics and canvas animation." />
+	<meta name="keywords" content="WGD235,HTML5, web graphics, animations" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	
+	
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="css/kickstart.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" media="all" /> 
+    
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+	
+	<!-- JavaScript -->
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/kickstart.js"></script>
+</head>
+
+<body>
+<div class="grid">
+ 
+  <nav>
+    <ul class="menu">
+      <li><a href="Landing.html">Home</a></li>
+
+          <li class="current">
+              <a href="Info.html">Information about Airsoft</a>
+            </li>
+          <li><a href="GettingStarted.html">Getting Started</a>
+           </li>
+          <li><a href="Rules.html">Common Rules</a>
+           </li>
+          <li><a href="Locations.html">Find a Location Near You</a>      </li>
+          <li><a href="Prevalence.html">Prevalence of Airsoft</a>
+            </li>
+          <li><a href="Sites.html">Websites For Airsoft Needs</a>
+            </li>      
+    </ul>
+  </nav>
+        <div class="col_12">
+            <h1 class="center">
+<h1>A Brief History of Airsoft: </h1>
+  <canvas class="side_img" id="myCanvas" width="400" height="400"> 
+            We're sorry.  Your browser does NOT support the HTML5 canvas tag.
+            </canvas>
+            <script>
+                var canvas = document.getElementById('myCanvas').getContext ('2d');
+                var canvasImage = new Image();
+                function drawCanvas(){    
+                    canvas.drawImage(canvasImage, 0, 0, 400, 400);
+                    flashyText();
+                };
+                function flashyText() {
+                    var count = 2;
+                        timer = setInterval(function() {
+                           if( count == 2) {
+                                canvas.font = 'italic 24pt Oswald';
+                                canvas.fillStyle = '#000000';
+                                canvas.fillText('Pew Pew!', 225, 75);
+                                
+                            }
+                            if( count == 1){
+                                canvas.font = 'italic 24pt Oswald';
+                                canvas.fillStyle = '#ffffff';
+                                canvas.fillText('Pew Pew!', 225, 75);
+                                count = 3;
+                            }
+                        count --;    
+                        },1000);
+                }
+
+                canvasImage.addEventListener('load',drawCanvas,false);
+                canvasImage.src = 'images/picture1.png';
+            </script>
+                
+    <h2>&nbsp;&nbsp;&nbsp;In the Beginning&nbsp;&ndash;&nbsp;</h2>
+                <p>
+         Airsoft started as a hobby in Japan, where ownership of firearms is essentially banned. Because of this, very realistic replica firearms that shot plastic in a safe manner were created for firearm enthusiasts. <br> Over time, these Airsoft Guns have been adapted into a force-on-force sport spanning the globe.  In fact, it is now common to see police and military organizations using Airsoft for training situations.  As Airsoft became widely accepted and recognized, many were left wondering how to enter this new sport. <br> Thankfully, it is now easier than ever before, due to the advantages of Technology.</p>
+                <h2>What this means for you: </h2>
+                <p> Those looking to get into Airsoft don't need much more than some funds and an internet connection.  Using a small amount of time to browse this site, however, may save you money and effort down the line. <br> Check out the Getting Started page to learn more. </p>
+   </div><!-- End col_12 -->
+ 
+   <footer>
+     <p>© Copyright 2017. Developed by David Anderson for WGD235. All Rights Reserved.</p>
+   </footer>
+ 
+ </div> <!-- End Grid -->
+ 
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Metadata -->
+	<title>David Anderson | Using HTML5 Canvas for Text.</title>
+	<meta charset="UTF-8">
+	<meta name="author" content="David Anderson"/>
+	<meta name="description" content="A portfolio of HTML5 web graphics and canvas animation." />
+	<meta name="keywords" content="WGD235,HTML5, web graphics, animations" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	
+	
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="css/kickstart.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" media="all" /> 
+    
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+	
+	<!-- JavaScript -->
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/kickstart.js"></script>
+
+    <!-- JS  -->
+    <script> 
+ var TxtRotate = function(el, toRotate, period) {
+  this.toRotate = toRotate;
+  this.el = el;
+  this.loopNum = 0;
+  this.period = parseInt(period, 10) || 2000;
+  this.txt = '';
+  this.tick();
+  this.isDeleting = false;
+};
+
+TxtRotate.prototype.tick = function() {
+  var i = this.loopNum % this.toRotate.length;
+  var fullTxt = this.toRotate[i];
+
+  if (this.isDeleting) {
+    this.txt = fullTxt.substring(0, this.txt.length - 1);
+  } else {
+    this.txt = fullTxt.substring(0, this.txt.length + 1);
+  }
+
+  this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+
+  var that = this;
+  var delta = 300 - Math.random() * 100;
+
+  if (this.isDeleting) { delta /= 2; }
+
+  if (!this.isDeleting && this.txt === fullTxt) {
+    delta = this.period;
+    this.isDeleting = true;
+  } else if (this.isDeleting && this.txt === '') {
+    this.isDeleting = false;
+    this.loopNum++;
+    delta = 500;
+  }
+
+  setTimeout(function() {
+    that.tick();
+  }, delta);
+};
+
+window.onload = function() {
+  var elements = document.getElementsByClassName('txt-rotate');
+  for (var i=0; i<elements.length; i++) {
+    var toRotate = elements[i].getAttribute('data-rotate');
+    var period = elements[i].getAttribute('data-period');
+    if (toRotate) {
+      new TxtRotate(elements[i], JSON.parse(toRotate), period);
+    }
+  }
+  // INJECT CSS
+  var css = document.createElement("style");
+  css.type = "text/css";
+  css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #666 }";
+  document.body.appendChild(css);
+};
+    </script>
+
+
+</head>
+
+<body>
+<div class="grid">
+ 
+  <nav>
+    <ul class="menu">
+      <li><a href="Landing.html">Home</a></li>
+          <li>
+              <a href="Info.html">Information about Airsoft</a>
+            </li>
+          <li class="current"><a href="GettingStarted.html">Getting Started</a>
+           </li>
+          <li><a href="Rules.html">Common Rules</a>
+           </li>
+          <li><a href="Locations.html">Find a Location Near You</a>      </li>
+          <li><a href="Prevalence.html">Prevalence of Airsoft</a>
+            </li>
+          <li><a href="Sites.html">Websites For Airsoft Needs</a>
+            </li>  
+    </ul>
+  </nav>
+        <div class="col_12">
+            <h1 class="center">
+               Getting Started in the Sport of Airsoft
+            </h1> 
+           <link href="https://fonts.googleapis.com/css?family=Raleway:200,100,400" rel="stylesheet" type="text/css" />
+            <h2>Airsoft is
+                <span
+                      class="txt-rotate"
+                      data-period="2000"
+                      data-rotate='[ "simple.", "awesome.", "teamwork.", "honorable.", "fun!" ]'></span>
+            </h2>
+            
+            
+            <h2>First, find a local field&nbsp;&ndash;&nbsp; </h2>
+               <p> Finding a field with a trustworthy and active community is easily the most important goal of any new player. First and foremost, click this link: <a href="https://www.google.com/maps/search/airsoft+field+near+me/" target="_blank"> Airsoft Fields Near Me</a>. Try to find a few fields within a reasonable distance. Next, you'll need to try these fields out, and see which playstyle (indoor or outdoor) suits you the best. <br> With some time and effort, you'll find yourself in the middle of an active Airsoft Community! </p>
+            <h2>Where do I go from there? </h2>
+ 
+                <p> Once you've found a field you enjoy and selected the type of gear you want to use, it's time to join the local community for your area. Typically, Facebook hosts many airsoft groups, and it is very easy to find them. While buy/sell/trade of airsoft has been banned from Facebook, people still use the platform to share tips and tricks. <br> Utilize this to your advantage, and possibly find a local Airsoft Tech to upgrade your gear to it's full potentional. </p>
+   </div><!-- End col_12 -->
+ 
+   <footer>
+     <p>© Copyright 2017. Developed by David Anderson for WGD235. All Rights Reserved.</p>
+   </footer>
+ 
+ </div> <!-- End Grid -->
+ 
+</body>
+</html>

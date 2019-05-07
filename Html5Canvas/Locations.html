@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Metadata -->
+	<title>David Anderson | Interactive HTML5 Chart</title>
+	<meta charset="UTF-8">
+	<meta name="author" content="David Anderson"/>
+	<meta name="description" content="A portfolio of HTML5 web graphics and canvas animation." />
+	<meta name="keywords" content="WGD235,HTML5, web graphics, animations" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	
+	
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="css/kickstart.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" media="all" /> 
+    
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+	
+	<!-- JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/kickstart.js"></script>
+
+    <script src="js/Chart.min.js"></script>
+    
+</head>
+
+<body onload="draw();">
+<div class="grid">
+ 
+  <nav>
+    <ul class="menu">
+      <li><a href="Landing.html">Home</a></li>
+          <li>
+             <a href="Info.html">Information about Airsoft</a>
+            </li>
+          <li><a href="GettingStarted.html">Getting Started</a>
+           </li>
+          <li><a href="Rules.html">Common Rules</a>
+           </li>
+          <li class="current"><a href="Locations.html">Find a Location Near You</a>     
+            </li>
+          <li><a href="Prevalence.html">Prevalence of Airsoft</a>
+            </li>
+          <li><a href="Sites.html">Websites For Airsoft Needs</a>
+            </li>   
+    </ul>
+  </nav>
+        
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        var context;
+        var text = "";
+        var textDirection ="";
+
+        $(function()
+        {
+            context = document.getElementById("cvs").getContext("2d");            
+            setInterval("animate()", 30);
+
+            textDirection ="right";
+            textXpos = 5;
+            text = "Check out your local Airsoft Locations!";    
+        });  
+
+        function animate() {            
+            // Clear screen
+            context.clearRect(0, 0, 1200, 400);
+            context.globalAlpha = 1;
+            context.fillStyle = '#efefef';
+            context.fillRect(0, 0, 1200, 400);    
+
+            var metrics = context.measureText(text);
+            var textWidth = metrics.width;
+
+            if (textDirection == "right") {
+                textXpos += 5;
+
+                if (textXpos > 900 - textWidth) {
+                    textDirection = "left";
+                }
+            }
+            else {
+                textXpos -= 5;
+
+                if (textXpos < 5) {
+                    textDirection = "right";
+                }                    
+            }
+
+            context.font = '44px Oswald';
+            context.fillStyle = '#000000';
+            context.textBaseline = 'top';
+            context.fillText  ( text, textXpos, 180);    
+          }    
+          </script>
+      <body> 
+          
+         <div class="col_12">
+            <canvas id="cvs" width="1200" height="400">
+               Your browser does not support the HTML 5 Canvas. 
+            </canvas>
+             <h2> You can click this link to be taken to Google Maps </br>
+<a href="https://www.google.com/maps/search/airsoft+field+near+me/" target="_blank"> Airsoft Fields Near Me</a>.</h2>
+
+<p> Or, if you would rather look into it yourself, here's a link to another site with a map of all <a href="https://airsoftc3.com/fields">U.S. Airsoft Fields</a></p>
+          
+<p> If you can't find anything near you on either on those links, perhaps look into national airsoft events such as <a href="http://milsimwest.com/"> Milsim West</a> or take a look at this page from <a href="http://www.evike.com/events/"> Evike.com</a> for the national events they sell tickets to.</p>
+          
+
+
+   </div><!-- End col_12 -->
+            </body>
+            
+   <footer>
+     <p>© Copyright 2017. Developed by David Anderson for WGD235. All Rights Reserved.</p>
+   </footer>

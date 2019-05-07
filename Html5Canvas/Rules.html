@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Metadata -->
+	<title>David Anderson | Using HTML5 Canvas with Images.</title>
+	<meta charset="UTF-8">
+	<meta name="author" content="David Anderson"/>
+	<meta name="description" content="A portfolio of HTML5 web graphics and canvas animation." />
+	<meta name="keywords" content="WGD235,HTML5, web graphics, animations" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	
+	
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="css/kickstart.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" media="all" /> 
+    
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+	
+	<!-- JavaScript -->
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/kickstart.js"></script>
+
+</head>
+
+<body>
+<div class="grid">
+ 
+  <nav>
+    <ul class="menu">
+      <li><a href="Landing.html">Home</a></li>
+          <li>
+              <a href="Info.html">Information about Airsoft</a>
+            </li>
+          <li><a href="GettingStarted.html">Getting Started</a>
+           </li>
+          <li class="current"><a href="Rules.html">Common Rules</a>
+           </li>
+          <li><a href="Locations.html">Find a Location Near You</a>      </li>
+          <li><a href="Prevalence.html">Prevalence of Airsoft</a>
+            </li>
+          <li><a href="Sites.html">Websites For Airsoft Needs</a>
+            </li>   
+    </ul>
+  </nav>
+        <div class="col_12">
+            <h1 class="center">
+                Using HTML5 Canvas with Images.
+            </h1> 
+            <canvas id="myCanvas" width="600" height="200"> 
+            We're sorry.  Your browser does NOT support the HTML5 canvas tag.
+            </canvas>
+            <script>
+                      window.requestAnimFrame = (function(callback) {
+        return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+        function(callback) {
+          window.setTimeout(callback, 1000 / 60);
+        };
+      })();
+
+      function initBalls() {
+        balls = [];
+
+        var blue = '#3A5BCD';
+        var red = '#EF2B36';
+        var yellow = '#FFC636';
+        var green = '#02A817';
+
+        // R
+        balls.push(new Ball(173, 60, 0, 0, red));
+        balls.push(new Ball(158, 53, 0, 0, red));
+        balls.push(new Ball(143, 52, 0, 0, red));
+        balls.push(new Ball(130, 53, 0, 0, red));
+        balls.push(new Ball(117, 58, 0, 0, red));
+        balls.push(new Ball(110, 70, 0, 0, red));
+        balls.push(new Ball(102, 82, 0, 0, red));
+        balls.push(new Ball(102, 96, 0, 0, red));
+        balls.push(new Ball(102, 107, 0, 0, red));
+        balls.push(new Ball(102, 120, 0, 0, red));
+        balls.push(new Ball(102, 135, 0, 0, red));
+
+        // O
+
+        balls.push(new Ball(197, 91, 0, 0, red));
+        balls.push(new Ball(196, 103, 0, 0, red));
+        balls.push(new Ball(200, 116, 0, 0, red));
+        balls.push(new Ball(209, 127, 0, 0, red));
+        balls.push(new Ball(223, 130, 0, 0, red));
+        balls.push(new Ball(237, 127, 0, 0, red));
+        balls.push(new Ball(244, 114, 0, 0, red));
+        balls.push(new Ball(242, 98, 0, 0, red));
+        balls.push(new Ball(237, 86, 0, 0, red));
+
+
+        // L
+        balls.push(new Ball(294, 49, 0, 0, red));
+        balls.push(new Ball(281, 50, 0, 0, red));
+        balls.push(new Ball(291, 61, 0, 0, red));
+        balls.push(new Ball(290, 73, 0, 0, red));
+        balls.push(new Ball(292, 89, 0, 0, red));
+        balls.push(new Ball(290, 105, 0, 0, red));
+        balls.push(new Ball(290, 118, 0, 0, red));
+        balls.push(new Ball(288, 128, 0, 0, red));
+        balls.push(new Ball(300, 128, 0, 0, red));
+
+        // E
+        balls.push(new Ball(326, 101, 0, 0, red));
+        balls.push(new Ball(336, 98, 0, 0, red));
+        balls.push(new Ball(351, 95, 0, 0, red));
+        balls.push(new Ball(349, 83, 0, 0, red));
+        balls.push(new Ball(343, 78, 0, 0, red));
+        balls.push(new Ball(330, 77, 0, 0, red));
+        balls.push(new Ball(318, 82, 0, 0, red));
+        balls.push(new Ball(314, 93, 0, 0, red));
+        balls.push(new Ball(312, 108, 0, 0, red));
+        balls.push(new Ball(320, 120, 0, 0, red));
+        balls.push(new Ball(330, 127, 0, 0, red));
+        balls.push(new Ball(342, 130, 0, 0, red));
+        balls.push(new Ball(350, 125, 0, 0, red));
+
+        // S
+        balls.push(new Ball(412, 79, 0, 0, red));
+        balls.push(new Ball(400, 77, 0, 0, red));
+        balls.push(new Ball(385, 77, 0, 0, red));
+        balls.push(new Ball(380, 85, 0, 0, red));
+        balls.push(new Ball(385, 95, 0, 0, red));
+        balls.push(new Ball(400, 105, 0, 0, red));
+        balls.push(new Ball(412, 115, 0, 0, red));
+        balls.push(new Ball(412, 120, 0, 0, red));
+        balls.push(new Ball(403, 125, 0, 0, red));
+        balls.push(new Ball(385, 135, 0, 0, red));
+        balls.push(new Ball(395, 125, 0, 0, red));
+          
+        return balls;
+      }
+      function getMousePos(canvas, evt) {
+        // get canvas position
+        var obj = canvas;
+        var top = 0;
+        var left = 0;
+        while(obj.tagName != 'BODY') {
+          top += obj.offsetTop;
+          left += obj.offsetLeft;
+          obj = obj.offsetParent;
+        }
+
+        // return relative mouse position
+        var mouseX = evt.clientX - left + window.pageXOffset;
+        var mouseY = evt.clientY - top + window.pageYOffset;
+        return {
+          x: mouseX,
+          y: mouseY
+        };
+      }
+      function updateBalls(canvas, balls, timeDiff, mousePos) {
+        var context = canvas.getContext('2d');
+        var collisionDamper = 0.3;
+        var floorFriction = 0.0005 * timeDiff;
+        var mouseForceMultiplier = 1 * timeDiff;
+        var restoreForce = 0.002 * timeDiff;
+
+        for(var n = 0; n < balls.length; n++) {
+          var ball = balls[n];
+          // set ball position based on velocity
+          ball.y += ball.vy;
+          ball.x += ball.vx;
+
+          // restore forces
+          if(ball.x > ball.origX) {
+            ball.vx -= restoreForce;
+          }
+          else {
+            ball.vx += restoreForce;
+          }
+          if(ball.y > ball.origY) {
+            ball.vy -= restoreForce;
+          }
+          else {
+            ball.vy += restoreForce;
+          }
+
+          // mouse forces
+          var mouseX = mousePos.x;
+          var mouseY = mousePos.y;
+
+          var distX = ball.x - mouseX;
+          var distY = ball.y - mouseY;
+
+          var radius = Math.sqrt(Math.pow(distX, 2) + Math.pow(distY, 2));
+
+          var totalDist = Math.abs(distX) + Math.abs(distY);
+
+          var forceX = (Math.abs(distX) / totalDist) * (1 / radius) * mouseForceMultiplier;
+          var forceY = (Math.abs(distY) / totalDist) * (1 / radius) * mouseForceMultiplier;
+
+          if(distX > 0) {// mouse is left of ball
+            ball.vx += forceX;
+          }
+          else {
+            ball.vx -= forceX;
+          }
+          if(distY > 0) {// mouse is on top of ball
+            ball.vy += forceY;
+          }
+          else {
+            ball.vy -= forceY;
+          }
+
+          // floor friction
+          if(ball.vx > 0) {
+            ball.vx -= floorFriction;
+          }
+          else if(ball.vx < 0) {
+            ball.vx += floorFriction;
+          }
+          if(ball.vy > 0) {
+            ball.vy -= floorFriction;
+          }
+          else if(ball.vy < 0) {
+            ball.vy += floorFriction;
+          }
+
+          // floor condition
+          if(ball.y > (canvas.height - ball.radius)) {
+            ball.y = canvas.height - ball.radius - 2;
+            ball.vy *= -1;
+            ball.vy *= (1 - collisionDamper);
+          }
+
+          // ceiling condition
+          if(ball.y < (ball.radius)) {
+            ball.y = ball.radius + 2;
+            ball.vy *= -1;
+            ball.vy *= (1 - collisionDamper);
+          }
+
+          // right wall condition
+          if(ball.x > (canvas.width - ball.radius)) {
+            ball.x = canvas.width - ball.radius - 2;
+            ball.vx *= -1;
+            ball.vx *= (1 - collisionDamper);
+          }
+
+          // left wall condition
+          if(ball.x < (ball.radius)) {
+            ball.x = ball.radius + 2;
+            ball.vx *= -1;
+            ball.vx *= (1 - collisionDamper);
+          }
+        }
+      }
+      function Ball(x, y, vx, vy, color) {
+        this.x = x;
+        this.y = y;
+        this.vx = vx;
+        this.vy = vy;
+        this.color = color;
+        this.origX = x;
+        this.origY = y;
+        this.radius = 10;
+      }
+      function animate(canvas, balls, lastTime, mousePos) {
+        var context = canvas.getContext('2d');
+
+        // update
+        var date = new Date();
+        var time = date.getTime();
+        var timeDiff = time - lastTime;
+        updateBalls(canvas, balls, timeDiff, mousePos);
+        lastTime = time;
+
+        // clear
+        context.clearRect(0, 0, canvas.width, canvas.height);
+
+        // render
+        for(var n = 0; n < balls.length; n++) {
+          var ball = balls[n];
+          context.beginPath();
+          context.arc(ball.x, ball.y, ball.radius, 0, 2 * Math.PI, false);
+          context.fillStyle = ball.color;
+          context.fill();
+        }
+
+        // request new frame
+        requestAnimFrame(function() {
+          animate(canvas, balls, lastTime, mousePos);
+        });
+      }
+      var canvas = document.getElementById('myCanvas');
+      var balls = initBalls();
+      var date = new Date();
+      var time = date.getTime();
+      /*
+       * set mouse position really far away
+       * so the mouse forces are nearly obsolete
+       */
+      var mousePos = {
+        x: 9999,
+        y: 9999
+      };
+
+      canvas.addEventListener('mousemove', function(evt) {
+        var pos = getMousePos(canvas, evt);
+        mousePos.x = pos.x;
+        mousePos.y = pos.y;
+      });
+
+      canvas.addEventListener('mouseout', function(evt) {
+        mousePos.x = 9999;
+        mousePos.y = 9999;
+      });
+      animate(canvas, balls, time, mousePos);
+
+    </script>
+           <h1>Common Airsoft Rules: </h1>
+            <h2>First and Foremost&nbsp;&ndash;&nbsp; </h2>
+    <p>  Airsoft is primarily a game of Honor, in that the player who is hit by an airsoft pellet must call themselves "Hit". <br> While cheating isn't a huge concern in standard play, those who are caught cheating may face severe punishments as a warning to others. All Airsoft games, of all types, revolve around this single, honor-bound rule. </p>
+    
+                <h2>With that said, </h2>
+                <p>Here are a few common rules, reasons, and places you may encounter them:</p>
+                <table class="table1">
+                    <tr>
+                        <th>Rule</th>
+                        <th>Reason</th> 
+                        <th>Field Type</th>
+                    </tr>
+                    <tr>
+                        <td>Minimum Engagement Distance</td>
+                        <td>To prevent players (typically younger folks) from getting hurt</td> 
+                        <td>Indoor/Outdoor kid-friendly fields</td>
+                    </tr>
+                    <tr>
+                        <td>"Bang Bang" - within x feet</td>
+                        <td>To prevent players (typically younger folks) from getting hurt at close distances</td> 
+                        <td>Indoor/Outdoor kid-friendly fields</td>
+                    </tr>
+                    <tr>
+                        <td>No shooting into Spawn</td>
+                        <td>To prevent players from being unable to leave thier spawn during games with multiple respawns</td> 
+                        <td>Indoor fields</td>
+                    </tr>
+                    <tr>
+                        <td>Barrel covers/ magazines out</td>
+                        <td>To prevent accidental discharges in the staging area</td> 
+                        <td>All fields</td>
+                    </tr>
+                    <tr>
+                        <td>No Incendiary Devices (Smoke grenades)</td>
+                        <td>To prevent fire hazards</td> 
+                        <td>All fields</td>
+                    </tr>
+                    <tr>
+                        <td>Full Face-mask Required</td>
+                        <td>To prevent damage to teeth or ears</td> 
+                        <td>Indoor fields</td>
+                    </tr>
+                    <tr>
+                        <td>Biodegradable Ammo Only</td>
+                        <td>To prevent damage to local wildlife</td> 
+                        <td>Outdoor fields</td>
+                    </tr>
+                </table>
+        
+   </div><!-- End col_12 -->
+ 
+   <footer>
+     <p>© Copyright 2017. Developed by David Anderson for WGD235. All Rights Reserved.</p>
+   </footer>
+ 
+ </div> <!-- End Grid -->
+ 
+</body>
+</html>
